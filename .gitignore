@@ -1,6 +1,5 @@
 HELP.md
 .gradle
-*.yml
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
@@ -20,6 +19,7 @@ build/
 *.iws
 *.iml
 *.ipr
+*.yml
 out/
 
 ### NetBeans ###
