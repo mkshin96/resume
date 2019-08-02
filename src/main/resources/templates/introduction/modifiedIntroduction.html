@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/modifiedProject.css">
+    <title>Introduction</title>
+</head>
+<body>
+<div id="project_wrapper" th:each="intro : ${introduction}">
+    <div>
+        <div id="title" th:text="${intro.title}" contenteditable="false"></div>
+        <div id="growth" th:text="${intro.growth}" contenteditable="false"></div>
+        <div id="reason" th:text="${intro.reason}" contenteditable="false"></div>
+        <div id="strength" th:text="${intro.strength}" contenteditable="false"></div>
+        <div id="weakness" th:text="${intro.weakness}" contenteditable="false"></div>
+        <div id="aspiration" th:text="${intro.aspiration}" contenteditable="false"></div>
+        <div th:text="${intro.registeredDate}"></div>
+    </div>
+
+    <div>
+        <button type="button" class="enable_modified" th:value="${intro.idx}">수정</button>
+        <button type="button" class="modified_introduction" th:value="${intro.idx}">완료</button>
+    </div>
+
+</div>
+
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/introduction/modifiedIntroduction.js}"></script>
+</body>
+</html>

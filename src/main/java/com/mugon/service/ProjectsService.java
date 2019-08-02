@@ -2,10 +2,13 @@ package com.mugon.service;
 
 import com.mugon.domain.Projects;
 import com.mugon.repository.ProjectsRepository;
+import com.mugon.sortObject.AscendingIntroduction;
+import com.mugon.sortObject.AscendingProjects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -24,8 +27,12 @@ public class ProjectsService {
         projectsRepository.save(projects);
     }
 
+    //idx순으로 정렬 후 반환
     public List<Projects> findProject() {
-        return projectsRepository.findAll();
+        List<Projects> projects = projectsRepository.findAll();
+        AscendingProjects ascendingProjects = new AscendingProjects();
+        Collections.sort(projects, ascendingProjects);
+        return projects;
     }
 
     public Projects findModifiedProject(Long idx) {

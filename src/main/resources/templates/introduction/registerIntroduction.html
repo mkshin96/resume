@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Introduction</title>
+</head>
+<body>
+    <form onsubmit="return false">
+        <div class="wrapper">
+            <label for="title"> 자기소개서 이름 </label>
+            <input type="text" id="title">
+
+            <label for="growth"> 성장 배경</label>
+            <input type="text" id="growth">
+
+            <label for="reason"> 지원 동기</label>
+            <input type="text" id="reason">
+
+            <label for="strength"> 성격 장점 </label>
+            <input type="text" id="strength">
+
+            <label for="weakness"> 성격 단점 </label>
+            <input type="text" id="weakness">
+
+            <label for="aspiration"> 입사 후 포부 </label>
+            <input type="text" id="aspiration">
+
+        </div>
+        <div> <input type="submit" class="introduction_register" value="등록"></div>
+    </form>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/registerIntroduction.js}"></script>
+</body>
+</html>

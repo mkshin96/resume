@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/projects.css">
+    <title>Introduction List</title>
+</head>
+
+<body>
+<div class="button_wrapper">
+    <a href="/introduction/register"> <button type="button" class="introduction_register"> 자기소개서 등록 </button> </a>
+</div>
+
+<div class="project_wrapper" th:each="intro : ${introduction}">
+    <div class="check">
+        <span class="name" th:text="${intro.title}"></span>
+    </div>
+
+    <div>
+        <button type="button" class="modified" th:value="${intro.idx}"> 보기 </button>
+        <button type="button" class="delete" th:value="${intro.idx}"> 삭제 </button>
+    </div>
+
+</div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/introduction.js}"></script>
+</body>
+</html>
