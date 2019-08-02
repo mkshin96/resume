@@ -20,19 +20,19 @@ public class ProjectsController {
     public String getProjects(Model model){
         model.addAttribute("project", projectsService.findProject());
 
-        return "/projects";
+        return "/project/projects";
     }
 
     @GetMapping("/register")
     public String getRegisterProject(){
-        return "/registerProject";
+        return "/project/registerProject";
     }
 
     @GetMapping("/modified/{idx}" )
     public String getModifiedProject(@PathVariable Long idx, Model model){
         model.addAttribute("project", projectsService.findModifiedProject(idx));
 
-        return "/modifiedProject";
+        return "/project/modifiedProject";
     }
 
     @PostMapping
