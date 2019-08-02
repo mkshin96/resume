@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 @Entity
 @Table
@@ -44,6 +45,7 @@ public class Introduction {
 
     @Column
     private LocalDateTime registeredDate;
+
 
     @Builder
     public Introduction(String title, String growth, String reason, String strength, String weakness, String aspiration, LocalDateTime registeredDate) {

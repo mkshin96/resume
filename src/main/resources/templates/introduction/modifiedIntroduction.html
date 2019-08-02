@@ -6,25 +6,34 @@
     <title>Introduction</title>
 </head>
 <body>
-<div id="project_wrapper" th:each="intro : ${introduction}">
-    <div>
-        <div id="title" th:text="${intro.title}" contenteditable="false"></div>
-        <div id="growth" th:text="${intro.growth}" contenteditable="false"></div>
-        <div id="reason" th:text="${intro.reason}" contenteditable="false"></div>
-        <div id="strength" th:text="${intro.strength}" contenteditable="false"></div>
-        <div id="weakness" th:text="${intro.weakness}" contenteditable="false"></div>
-        <div id="aspiration" th:text="${intro.aspiration}" contenteditable="false"></div>
-        <div th:text="${intro.registeredDate}"></div>
+    <form>
+    <div id="project_wrapper" th:each="intro : ${introduction}" >
+        <div>
+
+            <div id="title" th:text="${intro.title}" contenteditable="false"></div>
+            <div>
+                <div id="growth" th:text="${intro.growth}" contenteditable="false"></div>
+                <span id="growthLength" style="color: red"></span>
+            </div>
+            <div id="reason" th:text="${intro.reason}" contenteditable="false"></div>
+            <span id="reasonLength" style="color: red"></span>
+            <div id="strength" th:text="${intro.strength}" contenteditable="false"></div>
+            <span id="strengthLength" style="color: red"></span>
+            <div id="weakness" th:text="${intro.weakness}" contenteditable="false"></div>
+            <span id="weaknessLength" style="color: red"></span>
+            <div id="aspiration" th:text="${intro.aspiration}" contenteditable="false"></div>
+            <span id="aspirationLength" style="color: red"></span>
+            <div th:text="${intro.registeredDate}"></div>
+        </div>
+
+        <div>
+            <button type="button" class="enable_modified" th:value="${intro.idx}">수정</button>
+            <button type="button" class="modified_introduction" th:value="${intro.idx}">완료</button>
+        </div>
+
     </div>
 
-    <div>
-        <button type="button" class="enable_modified" th:value="${intro.idx}">수정</button>
-        <button type="button" class="modified_introduction" th:value="${intro.idx}">완료</button>
-    </div>
-
-</div>
-
-
+    </form>
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/introduction/modifiedIntroduction.js}"></script>
 </body>

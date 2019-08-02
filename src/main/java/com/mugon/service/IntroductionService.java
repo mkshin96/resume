@@ -49,6 +49,7 @@ public class IntroductionService {
     }
 
     public Introduction findModiIntroduction(Long idx) {
+
         return introductionRepository.getOne(idx);
     }
 }

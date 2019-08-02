@@ -1,5 +1,6 @@
 $(".modified_introduction").click(function () {
     var modified_idx = $(this).val();
+    // var length = [$("#growthLength").text(), $("#reasonLength").text(), $("#strengthLength").text(), $("#weaknessLength").text(), $("#aspirationLength").text()];
 
     var jsonData = JSON.stringify({
         title : $("#title").text(),
@@ -7,7 +8,8 @@ $(".modified_introduction").click(function () {
         reason : $("#reason").text(),
         strength : $("#strength").text(),
         weakness : $("#weakness").text(),
-        aspiration : $("#aspiration").text()
+        aspiration : $("#aspiration").text(),
+        length : length
     });
 
     $.ajax({
@@ -44,3 +46,20 @@ $(".enable_modified").click(function () {
         document.getElementById("aspiration").setAttribute("contenteditable", "false");
     }
 });
+
+//글자 수 카운트
+letterLength("growth");
+letterLength("reason");
+letterLength("strength");
+letterLength("weakness");
+letterLength("aspiration");
+
+function letterLength(e) {
+    $(document).on("keyup", "#" + e, function () {
+        lengthHtml(e);
+    })
+}
+
+function lengthHtml(e) {
+    $("#" + e +"Length").text($("#" + e).text().length);
+}
