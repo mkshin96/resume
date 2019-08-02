@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Register Project</title>
 </head>
-
 <body>
-    <label for="name"> 프로젝트 이름 : <input type="text" height="100px" width="50px" id="name"> </label>
-    <label for="period"> 프로젝트 기간 : <input type="text" height="100px" width="50px" id="period"> </label>
-    <label for="description"> 역할 : <input type="text" height="100px" width="50px" id="description"> </label>
-    <label for="persons"> 참여한 인원 수 : <input type="text" height="100px" width="50px" id="persons"> </label>
+    <header>
+        <!--<div class="headerTitle">-->
+            <!--<span>-->
+                <!--<a href="/logout"><img src="/css/img/github.png" alt="cat" width="50px" height="50px"></a>-->
+                <!--<a href="/tdl/list"><span> To Do List </span></a>-->
+            <!--</span>-->
+        <!--</div>-->
+    </header>
+    <form onsubmit="return false">
+        <div class="wrapper">
+            <label for="name"> 프로젝트 이름 </label> <input type="text" id="name">
+            프로젝트 기간 : <label for="period"> </label> <input type="text" id="period">
+            프로젝트 설명 : <label for="description"> </label> <input type="text" id="description">
+            프로젝트 인원 : <label for="persons"> </label> <input type="text" id="persons">
+        </div>
 
-    <input type="button" id="project_register" value="등록">
+        <div> <input type="submit" class="project_register" value="등록"></div>
+    </form>
+    <footer>
+        <!--<div class="footer_title">-->
+            <!--<p> Copyright@2019 Shin.MK All Rights Reserved.</p>-->
+        <!--</div>-->
+    </footer>
 
+<script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/registerProject.js}"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-# resume
-- Spring Boot 공부를 위한 resume 이력서
+﻿# resume
+- Spring Boot 공부를 위한 resume 개발
 
 ---
 

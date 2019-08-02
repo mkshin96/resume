@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/modifiedProject.css">
+    <title>Project</title>
+</head>
+<body>
+    <div id="project_wrapper" th:each="pd : ${project}">
+        <div>
+            <div id="name" th:text="${pd.name}" contenteditable="false"></div>
+            <div id="period" th:text="${pd.period}" contenteditable="false"></div>
+            <div id="description" th:text="${pd.description}" contenteditable="false"></div>
+            <div id="persons" th:text="${pd.persons}" contenteditable="false"></div>
+            <div th:text="${pd.registeredDate}"></div>
+        </div>
+
+        <div>
+            <button type="button" class="enable_modified" th:value="${pd.idx}">수정</button>
+            <button type="button" class="modified_project" th:value="${pd.idx}">완료</button>
+        </div>
+
+    </div>
+
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/modifiedProject.js}"></script>
+</body>
+</html>

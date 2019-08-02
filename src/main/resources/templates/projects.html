@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/projects.css">
     <title>project list</title>
-
 </head>
 
 <body>
-    <input type="button" class="project_register" value="프로젝트 등록">
+    <div class="button_wrapper">
+        <a href="/projects/register"> <button type="button" class="project_register"> 프로젝트 등록 </button> </a>
+    </div>
 
+    <div class="project_wrapper" th:each="pd : ${project}">
+        <div class="check">
+            <span class="name" th:text="${pd.name}"></span>
+        </div>
 
-    <script th:src="@{/js/projects.js}"></script>
+        <div>
+            <button type="button" class="modified" th:value="${pd.idx}"> 보기 </button>
+            <button type="button" class="delete" th:value="${pd.idx}"> 삭제 </button>
+        </div>
+
+    </div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/projects.js}"></script>
 </body>
 </html>
