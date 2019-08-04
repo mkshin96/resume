@@ -1,6 +1,5 @@
 $(".modified_introduction").click(function () {
     var modified_idx = $(this).val();
-    // var length = [$("#growthLength").text(), $("#reasonLength").text(), $("#strengthLength").text(), $("#weaknessLength").text(), $("#aspirationLength").text()];
 
     var jsonData = JSON.stringify({
         title : $("#title").text(),
@@ -9,7 +8,11 @@ $(".modified_introduction").click(function () {
         strength : $("#strength").text(),
         weakness : $("#weakness").text(),
         aspiration : $("#aspiration").text(),
-        length : length
+        growthLength : $("#growthLength").text(),
+        reasonLength : $("#reasonLength").text(),
+        strengthLength : $("#strengthLength").text(),
+        weaknessLength : $("#weaknessLength").text(),
+        aspirationLength : $("#aspirationLength").text()
     });
 
     $.ajax({

@@ -13,17 +13,25 @@
             <div id="title" th:text="${intro.title}" contenteditable="false"></div>
             <div>
                 <div id="growth" th:text="${intro.growth}" contenteditable="false"></div>
-                <span id="growthLength" style="color: red"></span>
+                <span id="growthLength" th:text="${intro.growthLength}" style="color: red"></span>
             </div>
-            <div id="reason" th:text="${intro.reason}" contenteditable="false"></div>
-            <span id="reasonLength" style="color: red"></span>
-            <div id="strength" th:text="${intro.strength}" contenteditable="false"></div>
-            <span id="strengthLength" style="color: red"></span>
-            <div id="weakness" th:text="${intro.weakness}" contenteditable="false"></div>
-            <span id="weaknessLength" style="color: red"></span>
-            <div id="aspiration" th:text="${intro.aspiration}" contenteditable="false"></div>
-            <span id="aspirationLength" style="color: red"></span>
-            <div th:text="${intro.registeredDate}"></div>
+            <div>
+                <div id="reason" th:text="${intro.reason}" contenteditable="false"></div>
+                <span id="reasonLength" th:text="${intro.reasonLength}" style="color: red"></span>
+            </div>
+            <div>
+                <div id="strength" th:text="${intro.strength}" contenteditable="false"></div>
+                <span id="strengthLength" th:text="${intro.strengthLength}" style="color: red"></span>
+            </div>
+            <div>
+                <div id="weakness" th:text="${intro.weakness}" contenteditable="false"></div>
+                <span id="weaknessLength" th:text="${intro.weaknessLength}" style="color: red"></span>
+            </div>
+            <div>
+                <div id="aspiration" th:text="${intro.aspiration}" contenteditable="false"></div>
+                <span id="aspirationLength" th:text="${intro.aspirationLength}" style="color: red"></span>
+            </div>
+                <div th:text="${intro.registeredDate}"></div>
         </div>
 
         <div>

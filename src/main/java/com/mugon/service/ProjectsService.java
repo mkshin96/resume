@@ -17,6 +17,9 @@ public class ProjectsService {
     @Autowired
     ProjectsRepository projectsRepository;
 
+    @Autowired
+    AscendingProjects ascendingProjects;
+
     public void saveProject(Projects projects) {
         projects.setRegisteredDate(LocalDateTime.now());
         projectsRepository.save(projects);
@@ -30,7 +33,7 @@ public class ProjectsService {
     //idx순으로 정렬 후 반환
     public List<Projects> findProject() {
         List<Projects> projects = projectsRepository.findAll();
-        AscendingProjects ascendingProjects = new AscendingProjects();
+
         Collections.sort(projects, ascendingProjects);
         return projects;
     }

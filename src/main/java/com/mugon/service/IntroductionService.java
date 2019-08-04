@@ -16,6 +16,9 @@ public class IntroductionService {
     @Autowired
     IntroductionRepository introductionRepository;
 
+    @Autowired
+    AscendingIntroduction ascendingIntroduction;
+
     public void saveIntroduction(Introduction introduction) {
         introduction.setRegisteredDate(LocalDateTime.now());
         introductionRepository.save(introduction);
@@ -28,8 +31,6 @@ public class IntroductionService {
     //idx순으로 정렬 후 반환
     public List<Introduction> findIntroduction() {
         List<Introduction> introductions = introductionRepository.findAll();
-        AscendingIntroduction ascendingIntroduction = new AscendingIntroduction();
-
         Collections.sort(introductions, ascendingIntroduction);
         return introductions;
     }
@@ -44,6 +45,11 @@ public class IntroductionService {
         modiIntroduction.setStrength((introduction.getStrength()));
         modiIntroduction.setWeakness(introduction.getWeakness());
         modiIntroduction.setAspiration(introduction.getAspiration());
+        modiIntroduction.setGrowthLength(introduction.getGrowthLength());
+        modiIntroduction.setReasonLength(introduction.getReasonLength());
+        modiIntroduction.setStrengthLength(introduction.getStrengthLength());
+        modiIntroduction.setWeaknessLength(introduction.getWeaknessLength());
+        modiIntroduction.setAspirationLength(introduction.getAspirationLength());
 
         introductionRepository.save(modiIntroduction);
     }

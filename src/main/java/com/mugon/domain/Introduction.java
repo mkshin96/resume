@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 
 @Entity
 @Table
@@ -46,9 +45,24 @@ public class Introduction {
     @Column
     private LocalDateTime registeredDate;
 
+    @Column
+    private Long growthLength;
+
+    @Column
+    private Long reasonLength;
+
+    @Column
+    private Long strengthLength;
+
+    @Column
+    private Long weaknessLength;
+
+    @Column
+    private Long aspirationLength;
 
     @Builder
-    public Introduction(String title, String growth, String reason, String strength, String weakness, String aspiration, LocalDateTime registeredDate) {
+
+    public Introduction(String title, String growth, String reason, String strength, String weakness, String aspiration, LocalDateTime registeredDate, Long growthLength, Long reasonLength, Long strengthLength, Long weaknessLength, Long aspirationLength) {
         this.title = title;
         this.growth = growth;
         this.reason = reason;
@@ -56,5 +70,10 @@ public class Introduction {
         this.weakness = weakness;
         this.aspiration = aspiration;
         this.registeredDate = registeredDate;
+        this.growthLength = growthLength;
+        this.reasonLength = reasonLength;
+        this.strengthLength = strengthLength;
+        this.weaknessLength = weaknessLength;
+        this.aspirationLength = aspirationLength;
     }
 }
