@@ -32,12 +32,16 @@ public class Projects {
     @Column
     private LocalDateTime registeredDate;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
+
     @Builder
-    public Projects(String name, String period, String description, String persons, LocalDateTime registeredDate) {
+    public Projects(String name, String period, String description, String persons, LocalDateTime registeredDate, User user) {
         this.name = name;
         this.period = period;
         this.description = description;
         this.persons = persons;
         this.registeredDate = registeredDate;
+        this.user = user;
     }
 }

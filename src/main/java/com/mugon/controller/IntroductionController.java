@@ -46,7 +46,7 @@ public class IntroductionController {
 
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
-    
+
     @DeleteMapping("/{idx}")
     public ResponseEntity<?> deleteIntroduction(@PathVariable Long idx){
         introductionService.deleteIntroduction(idx);

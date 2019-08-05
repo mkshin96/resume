@@ -45,11 +45,6 @@ public class IntroductionService {
         modiIntroduction.setStrength((introduction.getStrength()));
         modiIntroduction.setWeakness(introduction.getWeakness());
         modiIntroduction.setAspiration(introduction.getAspiration());
-        modiIntroduction.setGrowthLength(introduction.getGrowthLength());
-        modiIntroduction.setReasonLength(introduction.getReasonLength());
-        modiIntroduction.setStrengthLength(introduction.getStrengthLength());
-        modiIntroduction.setWeaknessLength(introduction.getWeaknessLength());
-        modiIntroduction.setAspirationLength(introduction.getAspirationLength());
 
         introductionRepository.save(modiIntroduction);
     }
