@@ -7,12 +7,7 @@ $(".modified_introduction").click(function () {
         reason : $("#reason").text(),
         strength : $("#strength").text(),
         weakness : $("#weakness").text(),
-        aspiration : $("#aspiration").text(),
-        growthLength : $("#growthLength").text(),
-        reasonLength : $("#reasonLength").text(),
-        strengthLength : $("#strengthLength").text(),
-        weaknessLength : $("#weaknessLength").text(),
-        aspirationLength : $("#aspirationLength").text()
+        aspiration : $("#aspiration").text()
     });
 
     $.ajax({
