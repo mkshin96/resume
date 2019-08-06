@@ -16,6 +16,6 @@ public class LoginController {
 
     @PostMapping("/success")
     public String loginSuccess(){
-        return "/main";
+        return "redirect:/main";
     }
 }

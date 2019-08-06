@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/main.css">
     <title>resume</title>
+
 </head>
 <body>
     <ul class="mylist">
@@ -11,6 +12,10 @@
         <li> <a href="/projects" style="color: black; text-decoration: none" > 프로젝트 </a> </li>
     </ul>
 
-<script src="/js/main.js"></script>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit"> 로그아웃 </button>
+    </form>
+
+    <script src="/js/main.js"></script>
 </body>
 </html>
