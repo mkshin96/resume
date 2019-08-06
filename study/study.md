@@ -12,4 +12,5 @@
 ##### 공부해야 할 것
 
 - `@FetchType.EAGER` 와 `@FetchType.LAZY`의 차이
-- `@Transactional`이란? 
+- `@Transactional`이란?
+- Set vs List

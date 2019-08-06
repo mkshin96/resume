@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -27,25 +28,25 @@ public class User {
     private String email;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private List<Projects> projectsList;
+    private Set<Projects> projectsSet;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Introduction> introductionList;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Introduction> introductionSet;
 
     @Builder
-    public User(String id, String password, String email, List<Projects> projectsList, List<Introduction> introductionList) {
+    public User(String id, String password, String email, Set<Projects> projectsSet, Set<Introduction> introductionSet) {
         this.id = id;
         this.password = password;
         this.email = email;
-        this.projectsList = projectsList;
-        this.introductionList = introductionList;
+        this.projectsSet = projectsSet;
+        this.introductionSet = introductionSet;
     }
 
     public void addProject(Projects projects) {
-        projectsList.add(projects);
+        projectsSet.add(projects);
     }
 
     public void addIntroduction(Introduction introduction) {
-        introductionList.add(introduction);
+        introductionSet.add(introduction);
     }
 }

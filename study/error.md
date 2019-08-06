@@ -38,12 +38,12 @@
         @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
         private List<Introduction> introductionList;
       ~~~
-  - 해결 방법 : Lazy로 변경([출처](https://eclipse4j.tistory.com/215))      
+  - 해결 방법1 : Lazy로 변경([출처](https://eclipse4j.tistory.com/215))
+  - 해결 방법2 : List<> -> Set<>로 변경([출처](https://thoughts-on-java.org/hibernate-tips-how-to-avoid-hibernates-multiplebagfetchexception/))
+  - [Hibernate MultipleBagFetchException 정복하기](https://perfectacle.github.io/2019/05/01/hibernate-multiple-bag-fetch-exception/)
 
 <br>
 
 - `org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.mugon.domain.User.introductionList, could not initialize proxy - no Session`
   - `User`class에 mapping된 `Introduction`를 조회하지 못해 생기는 오류
-  - 해결 방법1 : OneToMany에 fetch = FetchType.Eager 추가
-  - 해결 방법2 : @Transactional 추가
-    - [출처](https://ankonichijyou.tistory.com/entry/JPA-OneToMany-%EC%98%A4%EB%A5%98)
+  - 해결 방법 : OneToMany에 fetch = FetchType.EAGER 추가
