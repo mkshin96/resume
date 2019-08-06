@@ -14,7 +14,7 @@ public class LoginController {
         return "/relatedLogin/login";
     }
 
-    @PostMapping
+    @PostMapping("/success")
     public String loginSuccess(){
         return "/main";
     }

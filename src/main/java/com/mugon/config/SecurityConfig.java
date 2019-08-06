@@ -1,6 +1,5 @@
 package com.mugon.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/login")
                 .failureUrl("/login?error")
-                .successForwardUrl("/main")
+                .successForwardUrl("/login/success")
                 .usernameParameter("id")
                 .passwordParameter("password")
                 .permitAll();
