@@ -1,19 +1,20 @@
 $(".introduction_register").click(function () {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
     var jsonData = JSON.stringify({
         title : $("#title").val(),
         growth : $("#growth").val(),
         reason : $("#reason").val(),
         strength : $("#strength").val(),
         weakness : $("#weakness").val(),
-        aspiration : $("#aspiration").val(),
-        growthLength : $("#growthLength").text(),
-        reasonLength : $("#reasonLength").text(),
-        strengthLength : $("#strengthLength").text(),
-        weaknessLength : $("#weaknessLength").text(),
-        aspirationLength : $("#aspirationLength").text()
+        aspiration : $("#aspiration").val()
     });
 
     $.ajax({
+        beforeSend : function(xhr){
+            xhr.setRequestHeader(header, token);
+        },
         url: "/introduction",
         type: "POST",
         data: jsonData,
@@ -31,11 +32,13 @@ $(".introduction_register").click(function () {
 });
 
 //글자 수 카운트
-letterLength("growth");
-letterLength("reason");
-letterLength("strength");
-letterLength("weakness");
-letterLength("aspiration");
+$(function () {
+    letterLength("growth");
+    letterLength("reason");
+    letterLength("strength");
+    letterLength("weakness");
+    letterLength("aspiration");
+});
 
 function letterLength(e) {
     $(document).on("keyup", "#" + e, function () {

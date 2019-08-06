@@ -1,6 +1,7 @@
 package com.mugon.service;
 
 import com.mugon.domain.Projects;
+import com.mugon.domain.User;
 import com.mugon.repository.ProjectsRepository;
 import com.mugon.sortObject.AscendingIntroduction;
 import com.mugon.sortObject.AscendingProjects;
@@ -30,6 +31,14 @@ public class ProjectsService {
         projectsRepository.save(projects);
     }
 
+
+    public List<Projects> findProjectById(User user) {
+        List<Projects> projects = projectsRepository.findByUser(user);
+
+        Collections.sort(projects, ascendingProjects);
+        return projects;
+    }
+
     //idx순으로 정렬 후 반환
     public List<Projects> findProject() {
         List<Projects> projects = projectsRepository.findAll();
@@ -56,4 +65,6 @@ public class ProjectsService {
     public void deleteProject(Long idx) {
         projectsRepository.deleteById(idx);
     }
+
+
 }

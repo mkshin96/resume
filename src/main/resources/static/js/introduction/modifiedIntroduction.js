@@ -1,5 +1,7 @@
 $(".modified_introduction").click(function () {
     var modified_idx = $(this).val();
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
 
     var jsonData = JSON.stringify({
         title : $("#title").text(),
@@ -11,6 +13,9 @@ $(".modified_introduction").click(function () {
     });
 
     $.ajax({
+        beforeSend : function(xhr){
+            xhr.setRequestHeader(header, token);
+        },
         url: "/introduction/" + modified_idx,
         type: "PUT",
         data: jsonData,
@@ -46,11 +51,13 @@ $(".enable_modified").click(function () {
 });
 
 //글자 수 카운트
-letterLength("growth");
-letterLength("reason");
-letterLength("strength");
-letterLength("weakness");
-letterLength("aspiration");
+$(function () {
+    letterLength("growth");
+    letterLength("reason");
+    letterLength("strength");
+    letterLength("weakness");
+    letterLength("aspiration");
+});
 
 function letterLength(e) {
     $(document).on("keyup", "#" + e, function () {

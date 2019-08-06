@@ -1,5 +1,6 @@
 package com.mugon.service;
 
+import com.mugon.domain.User;
 import com.mugon.sortObject.AscendingIntroduction;
 import com.mugon.domain.Introduction;
 import com.mugon.repository.IntroductionRepository;
@@ -29,8 +30,9 @@ public class IntroductionService {
     }
 
     //idx순으로 정렬 후 반환
-    public List<Introduction> findIntroduction() {
-        List<Introduction> introductions = introductionRepository.findAll();
+    public List<Introduction> findIntroduction(User user) {
+        List<Introduction> introductions = introductionRepository.findByUser(user);
+
         Collections.sort(introductions, ascendingIntroduction);
         return introductions;
     }

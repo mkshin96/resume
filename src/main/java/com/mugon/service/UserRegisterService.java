@@ -20,4 +20,14 @@ public class UserRegisterService{
 
         userRepository.save(user);
     }
+
+    public boolean checkId(User user) {
+        if(userRepository.findById(user.getId()) == null) return true;
+        else return false;
+    }
+
+    public boolean checkEmail(User user) {
+        if(userRepository.findByEmail(user.getEmail()) == null) return true;
+        else return false;
+    }
 }

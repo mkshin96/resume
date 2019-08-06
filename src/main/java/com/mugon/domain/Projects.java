@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Setter
-@ToString
 @Getter
 public class Projects {
 

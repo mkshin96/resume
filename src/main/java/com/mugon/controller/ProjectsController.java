@@ -2,9 +2,12 @@ package com.mugon.controller;
 
 import com.mugon.domain.Projects;
 import com.mugon.service.ProjectsService;
+import com.mugon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +19,17 @@ public class ProjectsController {
     @Autowired
     ProjectsService projectsService;
 
+    @Autowired
+    UserService userService;
+
+    private com.mugon.domain.User currentUser;
+
     @GetMapping
     public String getProjects(Model model){
-        model.addAttribute("project", projectsService.findProject());
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        currentUser = userService.findCurrentUser(user);
+
+        model.addAttribute("project", projectsService.findProjectById(currentUser));
 
         return "/project/projects";
     }
@@ -37,6 +48,8 @@ public class ProjectsController {
 
     @PostMapping
     public ResponseEntity<?> saveProject(@RequestBody Projects projects){
+        this.currentUser.addProject(projects);
+        projects.setUser(currentUser);
         projectsService.saveProject(projects);
         return new ResponseEntity<>("{}", HttpStatus.CREATED);
     }

@@ -29,4 +29,19 @@ public class UserRegisterController {
 
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
+
+    //id 중복검사
+    @PostMapping("/checkId")
+    public ResponseEntity<?> checkId(@RequestBody User user){
+        System.out.println(user);
+        if(userRegisterService.checkId(user)) return new ResponseEntity<>("{}", HttpStatus.OK);
+        else return new ResponseEntity<>("{}", HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/checkEmail")
+    public ResponseEntity<?> checkEmail(@RequestBody User user){
+        if(userRegisterService.checkEmail(user)) return new ResponseEntity<>("{}", HttpStatus.OK);
+        else return new ResponseEntity<>("{}", HttpStatus.BAD_REQUEST);
+    }
+
 }

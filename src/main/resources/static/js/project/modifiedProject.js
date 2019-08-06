@@ -1,4 +1,7 @@
 $(".modified_project").click(function () {
+    var token = $("meta[name = '_csrf']").attr("content");
+    var header = $("meta[name = '_csrf_header']").attr("content");
+
     var modified_idx = $(this).val();
 
     var jsonData = JSON.stringify({
@@ -9,6 +12,9 @@ $(".modified_project").click(function () {
     });
 
     $.ajax({
+        beforeSend : function(xhr){
+            xhr.setRequestHeader(header, token)
+        },
         url: "/projects/" + modified_idx,
         type: "PUT",
         data: jsonData,
