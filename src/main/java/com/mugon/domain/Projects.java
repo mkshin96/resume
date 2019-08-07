@@ -1,8 +1,10 @@
 package com.mugon.domain;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
 
 @Table

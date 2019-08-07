@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
@@ -18,12 +19,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
+    @NotNull(message = "id는 필수 항목입니다.")
     @Column
     private String id;
 
+    @NotNull(message = "password는 필수 항목입니다.")
     @Column
     private String password;
 
+    @NotNull(message = "email은 필수 항목입니다.")
     @Column
     private String email;
 
