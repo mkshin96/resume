@@ -1,10 +1,12 @@
 package com.mugon.domain;
 
-import lombok.*;
-import org.hibernate.validator.constraints.Length;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Table
@@ -12,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Projects {
+public class Projects implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
