@@ -57,7 +57,7 @@ public class UserRegisterTest {
                 .andExpect(status().isCreated());
 
         //생성 확인
-        user = userRepository.findById(user.getId());
+        user = userRepository.findByIdx(2L);
         assertThat(user).isNotNull();
         assertThat(user.getId()).isEqualTo("testId");
         assertThat(user.getEmail()).isEqualTo("test@gmail.com");
