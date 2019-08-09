@@ -47,3 +47,17 @@
 - `org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.mugon.domain.User.introductionList, could not initialize proxy - no Session`
   - `User`class에 mapping된 `Introduction`를 조회하지 못해 생기는 오류
   - 해결 방법 : OneToMany에 fetch = FetchType.EAGER 추가
+
+<br>
+
+- `org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.mugon.domain.User.introductionList, could not initialize proxy - no Session`**#2**
+  - 다른 프로젝트에서 테스트코드를 짜다가 `User`관련 `domain`, `controller`, `service`, `repository`만 작성 후 save test를 진행했는데
+    ~~~java
+      (생략)
+      user = userRepository.getOne(1L);
+      assertThat(user).inNotNull();
+      assertThat(user.getUserName).isEqualsTo("testUserName");
+    ~~~
+  - 제일 마지막 줄에서 `LazyInitializationException`이 발생, `User`객체는 매핑된(참조하거나 참조된) 객체가 없어 `Exception`의 이유를 몰라 구글링을 하게 되었는데, getOne과 findOne의 차이에 대해 알게 됨.
+      - getOne은 Lazy Evaluation이 적용된 프록시를 리턴하지만 findOne은 데이터를 바로 가져옴
+      - 따라서 위의 코드일 경우 `findBy...`과 같이 코드를 작성하면 `LazyInitializationException`이 발생하지 않음!
