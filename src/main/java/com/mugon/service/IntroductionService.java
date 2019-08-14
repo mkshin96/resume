@@ -1,13 +1,13 @@
 package com.mugon.service;
 
-import com.mugon.domain.User;
-import com.mugon.sortObject.AscendingIntroduction;
 import com.mugon.domain.Introduction;
+import com.mugon.domain.User;
+import com.mugon.dto.IntroductionDto;
 import com.mugon.repository.IntroductionRepository;
+import com.mugon.sortObject.AscendingIntroduction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,9 +20,9 @@ public class IntroductionService {
     @Autowired
     AscendingIntroduction ascendingIntroduction;
 
-    public void saveIntroduction(Introduction introduction) {
-        introduction.setRegisteredDate(LocalDateTime.now());
-        introductionRepository.save(introduction);
+    public void saveIntroduction(IntroductionDto introductionDto, User user) {
+
+        introductionRepository.save(introductionDto.setIntroduction(user));
     }
 
     public void deleteIntroduction(Long idx) {
@@ -38,15 +38,15 @@ public class IntroductionService {
     }
 
 
-    public void findAndModifiedIntroduction(Long idx, Introduction introduction) {
+    public void findAndModifiedIntroduction(Long idx, IntroductionDto introductionDto) {
         Introduction modiIntroduction = introductionRepository.getOne(idx);
 
-        modiIntroduction.setTitle(introduction.getTitle());
-        modiIntroduction.setGrowth(introduction.getGrowth());
-        modiIntroduction.setReason(introduction.getReason());
-        modiIntroduction.setStrength((introduction.getStrength()));
-        modiIntroduction.setWeakness(introduction.getWeakness());
-        modiIntroduction.setAspiration(introduction.getAspiration());
+        modiIntroduction.setTitle(introductionDto.getTitle());
+        modiIntroduction.setGrowth(introductionDto.getGrowth());
+        modiIntroduction.setReason(introductionDto.getReason());
+        modiIntroduction.setStrength((introductionDto.getStrength()));
+        modiIntroduction.setWeakness(introductionDto.getWeakness());
+        modiIntroduction.setAspiration(introductionDto.getAspiration());
 
         introductionRepository.save(modiIntroduction);
     }

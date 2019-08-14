@@ -1,7 +1,7 @@
 package com.mugon.controller;
 
-import com.mugon.domain.Introduction;
 import com.mugon.domain.User;
+import com.mugon.dto.IntroductionDto;
 import com.mugon.service.IntroductionService;
 import com.mugon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/introduction")
@@ -45,21 +48,23 @@ public class IntroductionController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveIntroduction(@RequestBody Introduction introduction){
-
-        //유저와 양방향 관계 매핑
-        introduction.setUsers(currentUser);
-
-        introductionService.saveIntroduction(introduction);
-
-        return new ResponseEntity<>("{}", HttpStatus.CREATED);
+    public ResponseEntity<?> saveIntroduction(@Valid @RequestBody IntroductionDto introductionDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>("{}", HttpStatus.BAD_REQUEST);
+        }
+        else {
+            introductionService.saveIntroduction(introductionDto, currentUser);
+            return new ResponseEntity<>("{}", HttpStatus.CREATED);
+        }
     }
 
     @PutMapping("/{idx}")
-    public ResponseEntity<?> modifiedIntroduction(@PathVariable Long idx, @RequestBody Introduction introduction){
-        introductionService.findAndModifiedIntroduction(idx, introduction);
-
-        return new ResponseEntity<>("{}", HttpStatus.OK);
+    public ResponseEntity<?> modifiedIntroduction(@PathVariable Long idx, @Valid @RequestBody IntroductionDto introductionDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return new ResponseEntity<>("{}", HttpStatus.BAD_REQUEST);
+        else{
+            introductionService.findAndModifiedIntroduction(idx, introductionDto);
+            return new ResponseEntity<>("{}", HttpStatus.OK);
+        }
     }
 
     @DeleteMapping("/{idx}")

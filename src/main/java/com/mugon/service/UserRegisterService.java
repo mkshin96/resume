@@ -18,8 +18,7 @@ public class UserRegisterService{
 
     public void saveUser(UserDto userDto) {
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-
-        userRepository.save(userDto.setUser(userDto));
+        userRepository.save(userDto.setUser());
     }
 
     public boolean checkId(User user) {

@@ -23,11 +23,11 @@ public class UserDto {
     private String email;
 
 
-    public User setUser(UserDto userDto) {
+    public User setUser() {
         User user = new User();
-        user.setId(userDto.getId());
-        user.setPassword(userDto.getPassword());
-        user.setEmail(userDto.getEmail());
+        user.setId(this.getId());
+        user.setPassword(this.getPassword());
+        user.setEmail(this.getEmail());
 
         return user;
     }

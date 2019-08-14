@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IntroductionRepository extends JpaRepository<Introduction, Long> {
     List<Introduction> findByUser(User user);
+    Introduction findByIdx(Long idx);
 }
