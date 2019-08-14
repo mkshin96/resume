@@ -1,6 +1,7 @@
 package com.mugon.service;
 
 import com.mugon.domain.User;
+import com.mugon.dto.UserDto;
 import com.mugon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,19 +16,17 @@ public class UserRegisterService{
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public void saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public void saveUser(UserDto userDto) {
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        userRepository.save(user);
+        userRepository.save(userDto.setUser(userDto));
     }
 
     public boolean checkId(User user) {
-        if(userRepository.findById(user.getId()) == null) return true;
-        else return false;
+        return userRepository.findById(user.getId()) == null;
     }
 
     public boolean checkEmail(User user) {
-        if(userRepository.findByEmail(user.getEmail()) == null) return true;
-        else return false;
+        return userRepository.findByEmail(user.getEmail()) == null;
     }
 }

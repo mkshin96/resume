@@ -24,9 +24,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findById(id);
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
 
-        grantedAuthorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
-
         if(user == null) throw new UsernameNotFoundException("유저가 존재하지 않습니다.");
+
+        grantedAuthorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
         return new org.springframework.security.core.userdetails.User(user.getId(), user.getPassword(), grantedAuthorityList);
     }
 }

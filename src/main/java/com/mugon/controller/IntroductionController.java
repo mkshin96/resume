@@ -46,8 +46,10 @@ public class IntroductionController {
 
     @PostMapping
     public ResponseEntity<?> saveIntroduction(@RequestBody Introduction introduction){
-        introduction.setUser(currentUser);
-        currentUser.addIntroduction(introduction);
+
+        //유저와 양방향 관계 매핑
+        introduction.setUsers(currentUser);
+
         introductionService.saveIntroduction(introduction);
 
         return new ResponseEntity<>("{}", HttpStatus.CREATED);

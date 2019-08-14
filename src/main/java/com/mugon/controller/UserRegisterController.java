@@ -1,13 +1,13 @@
 package com.mugon.controller;
 
 import com.mugon.domain.User;
+import com.mugon.dto.UserDto;
 import com.mugon.service.UserRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,11 +28,11 @@ public class UserRegisterController {
     }
 
     @PostMapping
-    public ResponseEntity<?> postUser(@Valid @RequestBody User user, BindingResult result) {
+    public ResponseEntity<?> postUser(@Valid @RequestBody UserDto userDto, BindingResult result) {
         if (result.hasErrors()) {
             return new ResponseEntity<>("{}", HttpStatus.BAD_REQUEST);
         } else {
-            userRegisterService.saveUser(user);
+            userRegisterService.saveUser(userDto);
             return new ResponseEntity<>("{}", HttpStatus.CREATED);
         }
     }

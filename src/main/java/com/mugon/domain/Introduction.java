@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -60,5 +59,13 @@ public class Introduction implements Serializable {
         this.aspiration = aspiration;
         this.registeredDate = registeredDate;
         this.user = user;
+    }
+
+    public void setUsers(User currentUser) {
+
+        if(this.user != null) this.user.getIntroductionSet().remove(this);
+
+        this.user = currentUser;
+        currentUser.getIntroductionSet().add(this);
     }
 }

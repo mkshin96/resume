@@ -1,6 +1,6 @@
 $(".modified").click(function () {
     var modified_idx = $(this).val();
-    location.href = "/introduction/modified/" + modified_idx;
+    location.href = "/introduction/" + modified_idx;
 });
 
 $(".delete").click(function () {
