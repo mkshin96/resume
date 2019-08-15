@@ -1,6 +1,7 @@
 package com.mugon.controller;
 
 import com.mugon.domain.Projects;
+import com.mugon.dto.ProjectDto;
 import com.mugon.service.ProjectsService;
 import com.mugon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/projects")
@@ -47,18 +51,22 @@ public class ProjectsController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveProject(@RequestBody Projects projects){
-        this.currentUser.addProject(projects);
-        projects.setUser(currentUser);
-        projectsService.saveProject(projects);
-        return new ResponseEntity<>("{}", HttpStatus.CREATED);
+    public ResponseEntity<?> saveProject(@Valid @RequestBody ProjectDto projectDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return new ResponseEntity<>("{}", HttpStatus.BAD_REQUEST);
+        else {
+            projectsService.saveProject(projectDto, currentUser);
+            return new ResponseEntity<>("{}", HttpStatus.CREATED);
+        }
     }
 
     @PutMapping("/{idx}")
-    public ResponseEntity<?> modifiedProject(@PathVariable Long idx, @RequestBody Projects projects){
-        Projects modified = projectsService.findAndModifiedProject(idx, projects);
-        projectsService.modifiedProject(modified);
-        return new ResponseEntity<>("{}", HttpStatus.OK);
+    public ResponseEntity<?> modifiedProject(@PathVariable Long idx, @Valid @RequestBody ProjectDto projectDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return new ResponseEntity<>("{}", HttpStatus.BAD_REQUEST);
+        else{
+            Projects modified = projectsService.findAndModifiedProject(idx, projectDto);
+            projectsService.modifiedProject(modified);
+            return new ResponseEntity<>("{}", HttpStatus.OK);
+        }
     }
 
     @DeleteMapping("/{idx}")

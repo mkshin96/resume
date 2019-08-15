@@ -47,4 +47,11 @@ public class Projects implements Serializable {
         this.registeredDate = registeredDate;
         this.user = user;
     }
+
+    public void setUsers(User currentUser) {
+        if(this.user != null) this.user.getProjectsSet().remove(this);
+
+        this.user = currentUser;
+        currentUser.getProjectsSet().add(this);
+    }
 }
